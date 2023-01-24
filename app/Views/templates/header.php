@@ -17,22 +17,22 @@
         <div class="col-2" >
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="Login.php">Login</a>
+                    <a href="<?php echo base_url('/login'); ?>">Login</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="projekte.php">Projekte</a>
+                    <a href="<?php echo base_url('/projekt'); ?>">Projekte</a>
                 </li>
                 <li class="list-group-item">
-                   <a href="todos.php">Aktuelles Projekt</a>
+                   <a href="<?php echo base_url('/todos'); ?>">Aktuelles Projekt</a>
                 </li>
                 <li class="list-group-item" style="margin-left: 3em">
-                    <a href="reiter.php">Reiter</a>
+                    <a href="<?php echo base_url('/reiter'); ?>">Reiter</a>
                 </li>
                 <li class="list-group-item" style="margin-left: 3em">
-                    <a href="aufgaben.php">Aufgaben</a>
+                    <a href="<?php echo base_url('/aufgaben'); ?>">Aufgaben</a>
                 </li>
                 <li class="list-group-item" style="margin-left: 3em">
-                    <a href="mitglieder.php">Mitglieder</a>
+                    <a href="<?php echo base_url('/mitglieder'); ?>">Mitglieder</a>
                 </li>
             </ul>
         </div>

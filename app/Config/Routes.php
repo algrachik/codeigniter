@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Todos');
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -36,7 +36,16 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Todos::index');
+$routes->get('/mitglieder', 'Mitglieder::index');
+$routes->get('/login', 'Login::index');
+$routes->get('/aufgaben', 'Aufgaben::index');
+$routes->get('/projekt', 'Projekte::index');
+$routes->get('/reiter', 'Reiter::index');
 
+$routes->get('/mitglieder/delete/(:any)', 'Personen::Delete/$1');
+
+$routes->post('login/auth','Login::Auth');
+$routes->post('mitglieder/addEdit', 'Personen::AddEdit');
 
 /*
  * --------------------------------------------------------------------
