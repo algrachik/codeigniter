@@ -36,16 +36,21 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Todos::index');
-$routes->get('/mitglieder', 'Mitglieder::index');
-$routes->get('/login', 'Login::index');
+$routes->get('/mitglieder', 'Personen::index');
+$routes->get('/Login', 'Login::index');
 $routes->get('/aufgaben', 'Aufgaben::index');
-$routes->get('/projekt', 'Projekte::index');
+$routes->get('/projekte', 'Projekte::index');
 $routes->get('/reiter', 'Reiter::index');
 
 $routes->get('/mitglieder/delete/(:any)', 'Personen::Delete/$1');
 
-$routes->post('login/auth','Login::Auth');
+$routes->post('/Login','Login::index');
 $routes->post('mitglieder/addEdit', 'Personen::AddEdit');
+$routes->post('/projekte', 'Projekte::index');
+$routes->post('/reiter', 'Reiter::index');
+$routes->get('/reiter/delete/(:any)', 'Reiter::delete/$1');
+$routes->get('/aufgaben/delete/(:any)', 'Aufgaben::delete/$1');
+$routes->post('/aufgaben', 'Aufgaben::index');
 
 /*
  * --------------------------------------------------------------------

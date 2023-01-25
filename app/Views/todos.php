@@ -1,53 +1,28 @@
-<?php include ("templates/header.php");?>
 
 
 
-            <div class="row">
-                <div class="col">
-                    <!-- Card 1-->
-                    <div class="card">
-                        <div class="card-header">
-                            ToDo:
-                        </div>
-                        <div class="list-group">
-                            <li class="list-group-item">
-                                HTML Datei erstellen
-                            </li>
-                            <li class="list-group-item">
-                                CSS Datei erstellen
-                            </li>
-                        </div>
-                    </div>
 
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Erledigt:
-                        </div>
-                        <div class="list-group">
-                            <li class="list-group-item">
-                                PC eingeschaltet
-                            </li>
-                            <li class="list-group-item">
-                                Kaffee trinken
-                            </li>
-                        </div>
+                <div class="col-10">
+                    <div class="row">
+
+                        <?php foreach ($todos as $e){
+
+                            echo '<div class="col-4">';
+                            echo    '<div class="card">';
+                            echo       ' <div class="card-header">';
+                            echo $e['name'] . ':' ;
+                            echo       ' </div>';
+                            echo    '<div class="list-group">';
+                            foreach ($e['aufgaben'] as $x){
+                                echo '<li class="list-group-item">' . $x['Name'] . '</li>';
+                            }
+                            echo    '</div>';
+                            echo   '</div>';
+                            echo '</div>';
+
+
+                        } ?>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            Verschoben:
-                        </div>
-                        <div class="list-group">
-                            <li class="list-group-item">
-                                Für die Uni lernen
-                            </li>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-<?php include ("templates/footer.php");?>
-
+    </body>
+</html>

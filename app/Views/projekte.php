@@ -1,44 +1,103 @@
-<?php include ("templates/header.php");?>
-<link href="https://unpkg.com/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="https://unpkg.com/bootstrap-table@1.20.1/dist/bootstrap-table.min.css" rel="stylesheet">
 
-    <div>
-        <h4> Projekt auswählen: </h4>
-    </div>
-    <div>
-        <select class="form-select mb-3" aria-label="Default select example">
-            <option selected>- Bitte auswählen -</option>
-            <option value="1">ToDos</option>
-            <option value="2">Rettung der Schildkröten</option>
-            <option value="3">Findet Nemo</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <button type="button" class="btn btn-primary">Auswählen</button>
-        <button type="button" class="btn btn-primary">Bearbeiten</button>
-        <button type="button" class="btn btn-danger">Löschen</button>
-    </div>
 
-<div>
-    <h4> Projekt erstellen: </h4>
-    <form>
-        <div class="form-group">
-            <label for="projektname">Projekt name:</label>
-            <input class="form-control" id="projektname" placeholder="Projekt">
+<?php
+
+    $name = '';
+    $beschreiung = '';
+
+if (isset($projekt)){
+    $name = $projekt['name'];
+    $beschreiung = $projekt['beschreibung'];
+}
+
+
+$dataID = [
+    'name' => 'id',
+    'class' => 'form-control mb-3',
+    'id' => 'id',
+    'options' => $projekte,
+];
+$dataName = [
+    'name' => 'name',
+    'placeholder' => 'Name',
+    'class' => 'form-control',
+    'id' => 'name',
+    'value' => $name,
+];
+$databeschreibung = [
+    'name' => 'beschreibung',
+    'placeholder' => 'Beschreibung',
+    'class' => 'form-control',
+    'id' => 'beschreibung',
+    'rows' => '3',
+    'value' => $beschreiung,
+];
+
+
+$dataSaveButton = [
+    'name' => 'save',
+    'class' => 'btn btn-primary'
+];
+
+$dataEditButton = [
+    'name' => 'edit',
+    'class' => 'btn btn-primary'
+];
+
+$dataPickButton = [
+    'name' => 'pick',
+    'class' => 'btn btn-primary'
+];
+
+$dataDeleteButton = [
+    'name' => 'delete',
+    'class' => 'btn btn-danger'
+];
+
+$dataResetButton = [
+    'name' => 'reset',
+    'class' => 'btn btn-info'
+];
+
+
+
+?>
+
+
+                <div class="col-10">
+                    
+                    <div class="form" style="width: 75%">
+                        <?php echo form_open('') ?>
+                        <h3>Projekt Auswählen:</h3>
+                        <?php echo form_dropdown($dataID) ?>
+                        <div class="buttons mb-3">
+                            <?php echo form_submit($dataPickButton, 'Auswählen')?>
+                            <?php echo form_submit($dataEditButton, 'Bearbeiten')?>
+                            <?php echo form_submit($dataDeleteButton, 'Löschen')?>
+                        </div>
+
+                        <h3>Projekt bearbeiten/Erstellen:</h3>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Projektname:</label>
+                            <?php echo form_input($dataName, set_value('name'))?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="beschreibung" class="form-label">Projektbeschreibung:</label>
+                            <?php echo form_textarea($databeschreibung, set_value('beschreibung')) ?>
+                        </div>
+                        <div class="buttons mb-3">
+                        <?php echo form_submit($dataSaveButton, 'Speichern')?>
+                        <?php echo form_submit($dataResetButton, 'Reset')?>
+                        </div>
+                        <?php echo form_close() ?>
+                        </div>
+
+
+                    </div>
+                 </div>
+            </div>
+            
+
         </div>
-        <div class="form-group">
-            <label for="projektbeschreibung">Projektbeschreibung:</label>
-            <textarea class="form-control" id="projektbeschreibung" placeholder="Projektbeschreibung" rows="3" ></textarea>
-        </div>
-    </form>
-    <button type="button" class="btn btn-primary">Speichern</button>
-    <button type="button" class="btn btn-secondary">Reset</button>
-</div>
-
-
-</div>
-<div class="col-2">
-</div>
-</div>
-
-<?include("templates/footer.php"); ?>
+    </body>
+</html>

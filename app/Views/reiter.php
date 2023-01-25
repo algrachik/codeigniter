@@ -1,66 +1,98 @@
-<?php include ("templates/header.php");
+<?php
 
-$reiter = array (
-    array (
-        'id'=>1,
-        'name'=> 'Todo',
-        'beschreibung'=>'Was ist zu machen?'
-    ),
-    array(
-        'id'=>2,
-        'name'=>'Erledigt',
-        'beschreibung'=>"Yay geschafft!!!"
-    ),
-    array(
-        'id'=>3,
-        'name'=>'Verschoben',
-        'beschreibung'=>"Nix gut! :("
-    )
-);
-//var_dump($mitglieder);
+$name = "";
+$beschreibung = "";
+
+if (isset($reiterData)){
+    $beschreibung = $reiterData['beschreibung'];
+    $name = $reiterData['name'];
+}
+
+$name = '';
+$beschreibung = '';
+
+$dataSaveButton = [
+    'name' => 'save',
+    'class' => 'btn btn-primary'
+];
+
+$dataResetButton = [
+    'name' => 'reset',
+    'class' => 'btn btn-info'
+];
+
+$dataName = [
+    'name' => 'name',
+    'placeholder' => 'Name',
+    'class' => 'form-control',
+    'id' => 'name',
+    'value' => $name,
+];
+
+$databeschreibung = [
+    'name' => 'beschreibung',
+    'placeholder' => 'Beschreibung',
+    'class' => 'form-control',
+    'id' => 'beschreibung',
+    'rows' => '3',
+    'value' => $beschreibung,
+];
+
+
 ?>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Beschreibung</th>
 
-    </tr>
-    </thead>
-    <tbody>
+                    <div class="col-10" style="width: 75%">
+                    
+                    <div class="table" style="margin-bottom: 100px">
+                    <table class="table table-light ">   
+                            <thead class="thead-light">
+                                <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Beschreibung</th>
+                                <th scope="col"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php
+
+                            foreach ($reiter as $e){
+
+                                echo "<tr>";
+                                echo "<th>" . $e['Name'] . "</th>";
+                                echo "<td>" . $e['Beschreibung'] . "</td>";
+                                echo '<td><a href="'. base_url() . '/reiter/delete/'. $e['id'] .'"><i class="bi bi-trash" style="color: red"></i></a></td>';
+                                echo "</tr>";
+                            } ?>
+                            </tbody>
+                            </table>
+                            </div>
+
+                        <?php echo form_open() ?>
+                        <h3>Bearbeiten/Erstellen</h3>
+                        <div class="mb-3">
+                            <label for="formName" class="form-label">Bezeichnung des Reiters:</label>
+                            <?php echo form_input($dataName, set_value('name'))?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="beschreibung" class="form-label">Beschreibung:</label>
+                            <?php echo form_textarea($databeschreibung, set_value('beschreibung'))?>
+                        </div>
+                        <div class="buttons mb-3">
+                            <?php echo form_submit($dataSaveButton, 'Speichern')?>
+                            <?php echo form_submit($dataResetButton, 'Reset')?>
+                        </div>
 
 
-    <?php
-    foreach ($reiter as $r){
-        echo ('<tr>' .
-            '<th scope="row">'.$r['id'].'</th>'.
-            '<td>'.$r['name'].'</td>' .
-            '<td>'.$r['beschreibung'].'</td>' .
-            '</tr>');
-    }
+                        <?php echo form_close()?>
 
+                    </div>
+                 </div>
+            </div>
+            
 
-    ?>
-
-    </tbody>
-</table>
-
-<div>
-    <h4> Bearbeiten/erstellen: </h4>
-    <form>
-        <div class="form-group">
-            <label for="reitersname">Bezeichnung des Reiters:</label>
-            <input class="form-control" id="reitersname" placeholder="Reiter">
         </div>
-        <div class="form-group">
-            <label for="beschreibung">Beschreibung:</label>
-            <textarea class="form-control" id="beschreibung" placeholder="Beschreibung" rows="3" ></textarea>
-        </div>
-    </form>
-    <button type="button" class="btn btn-primary">Speichern</button>
-    <button type="button" class="btn btn-secondary">Reset</button>
-</div>
-
-<?php include ("templates/footer.php");?>
+    </body>
+</html>
